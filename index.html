@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="bn">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>উপজেলা ভ্রমণ ম্যাপ</title>
+  <meta name="description" content="বাংলাদেশের কোন কোন উপজেলা ঘুরেছেন তা সিলেক্ট করুন, ম্যাপে দেখুন এবং ছবি হিসেবে ডাউনলোড করুন।">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="top">
+    <div class="brand">
+      <span class="logo" aria-hidden="true">🗺️</span>
+      <div>
+        <h1>উপজেলা ভ্রমণ ম্যাপ</h1>
+        <p>যে উপজেলাগুলোতে গিয়েছেন, সেগুলো সিলেক্ট করুন — ম্যাপ ছবি ডাউনলোড করুন</p>
+      </div>
+    </div>
+    <div class="stats" aria-live="polite">
+      <div class="stat-num"><span id="count">০</span><small>/ <span id="total">৪৯৫</span></small></div>
+      <div class="bar"><i id="barFill"></i></div>
+      <div class="stat-sub"><span id="percent">০%</span> উপজেলা ভ্রমণ সম্পন্ন</div>
+    </div>
+  </header>
+
+  <main class="layout">
+    <section class="map-card">
+      <div id="loader" class="loader">
+        <div class="spinner"></div>
+        <p id="loaderText">ম্যাপ লোড হচ্ছে…</p>
+      </div>
+      <div id="mapWrap" class="map-wrap" hidden>
+        <svg id="map" role="img" aria-label="বাংলাদেশের উপজেলা ম্যাপ"></svg>
+        <div id="tip" class="tip" hidden></div>
+        <div class="zoom-ctl">
+          <button id="zin" title="জুম ইন" aria-label="জুম ইন">+</button>
+          <button id="zout" title="জুম আউট" aria-label="জুম আউট">−</button>
+          <button id="zreset" title="রিসেট" aria-label="জুম রিসেট">⟲</button>
+        </div>
+        <p class="hint">ম্যাপে ক্লিক করে উপজেলা সিলেক্ট করুন • স্ক্রল/পিঞ্চ করে জুম করুন</p>
+      </div>
+    </section>
+
+    <aside class="panel">
+      <div class="card">
+        <h2>ডাউনলোড</h2>
+        <label class="field">
+          <span>ছবির শিরোনাম</span>
+          <input id="title" type="text" maxlength="60" value="আমার বাংলাদেশ ভ্রমণ">
+        </label>
+        <div class="field">
+          <span>রঙের থিম</span>
+          <div id="palettes" class="palettes"></div>
+        </div>
+        <div class="btns">
+          <button id="download" class="primary" disabled>⬇ PNG ডাউনলোড</button>
+          <button id="clear" class="ghost" disabled>সব মুছুন</button>
+        </div>
+      </div>
+
+      <div class="card list-card">
+        <h2>উপজেলা তালিকা</h2>
+        <input id="search" type="search" placeholder="উপজেলা বা জেলার নাম খুঁজুন…" autocomplete="off">
+        <div id="tree" class="tree"></div>
+      </div>
+    </aside>
+  </main>
+
+  <footer class="foot">
+    সীমানা ডাটা: <a href="https://www.geoboundaries.org" target="_blank" rel="noopener">geoBoundaries</a> (CC BY 4.0) ·
+    <a href="https://github.com/ifahimreza/bangladesh-geojson" target="_blank" rel="noopener">ifahimreza/bangladesh-geojson</a>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
